@@ -5,7 +5,13 @@ if (isset($_POST['submit'])) {
     $password = $_POST['e2'];
 
     // DB connection
-    $conn = mysqli_connect("localhost","root","","gym_fitness");
+    // $conn = mysqli_connect("localhost","root","","gym_fitness");
+    $host = getenv('DB_HOST') ?: 'localhost';
+$user = getenv('DB_USER') ?: 'root';
+$pass = getenv('DB_PASSWORD') ?: '';
+$dbname = getenv('DB_NAME') ?: 'gym_fitness';
+
+$conn = mysqli_connect($host, $user, $pass, $dbname);
 
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
