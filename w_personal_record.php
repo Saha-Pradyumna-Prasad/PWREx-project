@@ -1,6 +1,12 @@
 <?php
 // ==== DATABASE CONNECTION ====
-$conn = new mysqli("localhost", "root", "", "gym_fitness");
+// $conn = new mysqli("localhost", "root", "", "gym_fitness");
+$host = getenv('DB_HOST') ?: 'localhost';
+$user = getenv('DB_USER') ?: 'root';
+$pass = getenv('DB_PASSWORD') ?: '';
+$dbname = getenv('DB_NAME') ?: 'gym_fitness';
+
+$conn = mysqli_connect($host, $user, $pass, $dbname);
 if ($conn->connect_error) {
     // If connection fails, stop execution
     die("Connection failed: " . $conn->connect_error);
